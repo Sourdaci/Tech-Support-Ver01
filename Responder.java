@@ -23,6 +23,7 @@ public class Responder{
         respuestas = new ArrayList<String>();
         condicionadas = new HashMap<String, String>();
         asignaRespuestas();
+        asignaCondicionadas();
     }
     
     private void asignaRespuestas(){
@@ -44,6 +45,10 @@ public class Responder{
         condicionadas.put("404", "La pagina ya no existe, mendrugo...");
     }
 
+    public String getCondicionada(String condicion){
+        return condicionadas.get(condicion);
+    }
+    
     /**
      * Generate a response.
      * @return   A string that should be displayed as the response

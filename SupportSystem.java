@@ -35,12 +35,17 @@ public class SupportSystem{
 
         while(!finished) {
             String input = reader.getInput();
-
             if(input.trim().toLowerCase().equals("bye")) {
                 finished = true;
+            }else if (!input.contains(" ")){
+                String condicionado = responder.getCondicionada(input.trim().toLowerCase());
+                if(condicionado != null){
+                    System.out.println(condicionado);
+                }else{
+                    respuestaPorDefecto();
+                }
             }else{
-                String response = responder.generateResponse();
-                System.out.println(response);
+                respuestaPorDefecto();
             }
         }
         printGoodbye();
@@ -57,6 +62,11 @@ public class SupportSystem{
         System.out.println("Please type 'bye' to exit our system.");
     }
 
+    private void respuestaPorDefecto(){
+        String response = responder.generateResponse();
+        System.out.println(response);
+    }
+    
     /**
      * Print a good-bye message to the screen.
      */
