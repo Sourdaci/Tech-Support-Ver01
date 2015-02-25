@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Date;
+import java.util.HashMap;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -15,10 +16,12 @@ public class Responder{
     
     private Random aleatorio;
     private ArrayList<String> respuestas;
+    private HashMap<String, String> condicionadas;
     
     public Responder(){
         aleatorio = new Random(new Date().getTime());
         respuestas = new ArrayList<String>();
+        condicionadas = new HashMap<String, String>();
         asignaRespuestas();
     }
     
@@ -31,6 +34,14 @@ public class Responder{
         respuestas.add("Comprueba que tienes todo bien conectado");
         respuestas.add("Los CD de Windows al reves estan muy sobrevalorados");
         respuestas.add("Eres funcionario, ¿verdad?. Cafe en el teclado otra vez...");
+    }
+    
+    private void asignaCondicionadas(){
+        condicionadas.put("windows", "Es un error. El sistema operativo entero es un error");
+        condicionadas.put("linux", "Menos compatible, mas abierto, y con mucha gente detras");
+        condicionadas.put("mac", "Cerrado como el solo. Hasta Apple tiene problemas con el codigo");
+        condicionadas.put("pantallazo", "Si no te gustan, no vuelvas a hacerlo");
+        condicionadas.put("404", "La pagina ya no existe, mendrugo...");
     }
 
     /**
