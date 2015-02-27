@@ -45,7 +45,7 @@ public class Responder{
         condicionadas.put("404", "La pagina ya no existe, mendrugo...");
     }
 
-    public String getCondicionada(String condicion){
+    private String getCondicionada(String condicion){
         return condicionadas.get(condicion);
     }
     
@@ -53,7 +53,11 @@ public class Responder{
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse(){
-        return respuestas.get(aleatorio.nextInt(respuestas.size()));
+    public String generateResponse(String input){
+        String respuesta = getCondicionada(input.toLowerCase());
+        if (respuesta == null){
+            respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
+        }
+        return respuesta;
     }
 }
