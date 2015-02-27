@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -47,7 +48,12 @@ public class Responder{
     }
 
     private String getCondicionada(HashSet condicion){
-        return condicionadas.get(condicion);
+        Iterator iterador = condicion.iterator();
+        String respuesta = null;
+        while (iterador.hasNext() && respuesta == null){
+            respuesta = condicionadas.get(iterador.next());
+        }
+        return respuesta;
     }
     
     /**
