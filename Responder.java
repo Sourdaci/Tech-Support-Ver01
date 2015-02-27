@@ -79,7 +79,13 @@ public class Responder{
     public String generateResponse(HashSet input){
         String respuesta = getCondicionada(input);
         if (respuesta == null){
-            respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
+            int restantes = respuestas.size();
+            if (restantes > 0){
+                respuesta = respuestas.remove(aleatorio.nextInt(restantes));
+            }
+        }
+        if (respuesta == null){
+            respuesta = "Lo siento, no entiendo tu pregunta";
         }
         return respuesta;
     }
