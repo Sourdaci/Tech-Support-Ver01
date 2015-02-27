@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -45,7 +46,7 @@ public class Responder{
         condicionadas.put("404", "La pagina ya no existe, mendrugo...");
     }
 
-    private String getCondicionada(String condicion){
+    private String getCondicionada(HashSet condicion){
         return condicionadas.get(condicion);
     }
     
@@ -53,8 +54,8 @@ public class Responder{
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse(String input){
-        String respuesta = getCondicionada(input.toLowerCase());
+    public String generateResponse(HashSet input){
+        String respuesta = getCondicionada(input);
         if (respuesta == null){
             respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
         }
