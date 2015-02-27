@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -18,12 +19,12 @@ public class Responder{
     
     private Random aleatorio;
     private ArrayList<String> respuestas;
-    private HashMap<String, String> condicionadas;
+    private HashMap<HashSet, String> condicionadas;
     
     public Responder(){
         aleatorio = new Random(new Date().getTime());
         respuestas = new ArrayList<String>();
-        condicionadas = new HashMap<String, String>();
+        condicionadas = new HashMap<HashSet, String>();
         asignaRespuestas();
         asignaCondicionadas();
     }
@@ -40,20 +41,35 @@ public class Responder{
     }
     
     private void asignaCondicionadas(){
-        condicionadas.put("windows", "Es un error. El sistema operativo entero es un error");
-        condicionadas.put("linux", "Menos compatible, mas abierto, y con mucha gente detras");
-        condicionadas.put("mac", "Cerrado como el solo. Hasta Apple tiene problemas con el codigo");
-        condicionadas.put("pantallazo", "Si no te gustan, no vuelvas a hacerlo");
-        condicionadas.put("404", "La pagina ya no existe, mendrugo...");
+        HashSet<String> nuevoSet = new HashSet<String>();
+        nuevoSet.add("windows");
+        condicionadas.put(nuevoSet, "Es un error. El sistema operativo entero es un error");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("linux");
+        condicionadas.put(nuevoSet, "Menos compatible, mas abierto, y con mucha gente detras");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("mac");
+        condicionadas.put(nuevoSet, "Cerrado como el solo. Hasta Apple tiene problemas con el codigo");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("pantallazo");
+        condicionadas.put(nuevoSet, "Si no te gustan, no vuelvas a hacerlo");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("404");
+        condicionadas.put(nuevoSet, "La pagina ya no existe, mendrugo...");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("windows");
+        nuevoSet.add("error");
+        condicionadas.put(nuevoSet, "Eso es absolutamente normal... apaga y vamonos");
+        nuevoSet = new HashSet<String>();
+        nuevoSet.add("control");
+        nuevoSet.add("alt");
+        nuevoSet.add("suprimir");
+        condicionadas.put(nuevoSet, "CONTROL... ALT..... SUPRIMIR!!!!!!!!!!");
     }
 
     private String getCondicionada(HashSet condicion){
-        Iterator iterador = condicion.iterator();
-        String respuesta = null;
-        while (iterador.hasNext() && respuesta == null){
-            respuesta = condicionadas.get(iterador.next());
-        }
-        return respuesta;
+        String respuestaCondicionada = condicionadas.get(condicion);
+        return respuestaCondicionada;
     }
     
     /**
