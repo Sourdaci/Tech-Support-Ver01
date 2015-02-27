@@ -27,7 +27,7 @@ public class InputReader{
     public String getInput(){
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-
-        return inputLine;
+        String[] splitLine = inputLine.trim().split(" ");
+        return splitLine[0];
     }
 }
